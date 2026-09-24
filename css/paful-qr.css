@@ -1,0 +1,222 @@
+/* PAFUL QR — brand layer on top of Bootstrap 5. Bootstrap handles layout,
+   components and dark mode via [data-bs-theme]; this file only adds what
+   Bootstrap has no component for. */
+
+:root {
+  --paful-primary: #0b3c5d;
+  --paful-primary-dark: #062a3f;
+  --paful-accent: #17a2b8;
+  --paful-bg: #f5f7fa;
+  --paful-surface-alt: #eef2f7;
+
+  --bs-primary: #0b3c5d;
+  --bs-primary-rgb: 11, 60, 93;
+  --bs-primary-text-emphasis: #062a3f;
+  --bs-primary-bg-subtle: #dbe7ee;
+  --bs-primary-border-subtle: #b6cedb;
+  --bs-link-color: #0b3c5d;
+  --bs-link-color-rgb: 11, 60, 93;
+  --bs-link-hover-color: #062a3f;
+  --bs-link-hover-color-rgb: 6, 42, 63;
+  --bs-body-bg: var(--paful-bg);
+  --bs-border-radius: 0.6rem;
+  --bs-border-radius-lg: 0.85rem;
+  --bs-border-radius-sm: 0.4rem;
+}
+
+[data-bs-theme="dark"] {
+  --paful-primary: #4fa8d8;
+  --paful-primary-dark: #74bce2;
+  --paful-accent: #2fc4dd;
+  --paful-bg: #0f1520;
+  --paful-surface-alt: #1d2534;
+
+  --bs-primary: #4fa8d8;
+  --bs-primary-rgb: 79, 168, 216;
+  --bs-primary-text-emphasis: #9cd2ef;
+  --bs-primary-bg-subtle: #172536;
+  --bs-primary-border-subtle: #2a3f54;
+  --bs-link-color: #4fa8d8;
+  --bs-link-color-rgb: 79, 168, 216;
+  --bs-link-hover-color: #74bce2;
+  --bs-link-hover-color-rgb: 116, 188, 226;
+  --bs-body-bg: var(--paful-bg);
+}
+
+html, body {
+  /* The Bootstrap offcanvas nav is translated off-screen (not display:none)
+     while closed, which can add phantom width to the document at very
+     narrow viewports — clip it on both the root and body to be safe. */
+  overflow-x: hidden;
+}
+
+body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+
+.navbar-brand { font-weight: 700; letter-spacing: -0.02em; }
+.navbar-brand .brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--bs-primary);
+  color: #fff;
+  margin-right: 0.4rem;
+  font-size: 0.9rem;
+}
+.navbar-brand .brand-tag { font-weight: 400; font-size: 0.7rem; color: var(--bs-secondary-color); }
+
+.hero-section { padding: 3.5rem 0 2rem; }
+
+/* QR type picker: Bootstrap btn-check/btn labels, just tightened spacing */
+.type-picker-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.type-picker-group .btn { display: flex; align-items: center; gap: 0.4rem; }
+
+/* Live QR preview */
+.qr-preview-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  background: var(--paful-surface-alt);
+  border-radius: var(--bs-border-radius);
+  padding: 1.5rem;
+}
+.qr-preview-box canvas, .qr-preview-box svg { max-width: 100%; height: auto; border-radius: 0.4rem; }
+#qrPreview.is-empty { opacity: 0.35; }
+
+/* Small thumbnail variant (history cards) — same box, no oversized min-height */
+.qr-card-thumb.qr-preview-box { min-height: 0; padding: 0.75rem; }
+#printCardContent {
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Generic dropzone (CSV / image upload) — no Bootstrap equivalent */
+.dropzone {
+  border: 2px dashed var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--bs-secondary-color);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.dropzone:hover, .dropzone.is-dragover { border-color: var(--paful-accent); background: var(--paful-surface-alt); }
+.dropzone input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.dropzone .dropzone-icon { font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
+
+/* Scanner */
+.scanner-viewport {
+  position: relative;
+  background: #000;
+  border-radius: var(--bs-border-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scanner-viewport video { width: 100%; height: 100%; object-fit: cover; }
+.scanner-frame {
+  position: absolute;
+  inset: 12%;
+  border: 3px solid rgba(255,255,255,0.85);
+  border-radius: var(--bs-border-radius);
+  pointer-events: none;
+}
+.scanner-placeholder { color: #cbd5e1; font-size: 0.9rem; padding: 1rem; text-align: center; }
+.scan-result-value { word-break: break-word; }
+
+/* Template swatch icon */
+.template-swatch {
+  height: 56px;
+  border-radius: var(--bs-border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Business card template picker */
+.template-thumb-btn {
+  padding: 4px;
+  border: 2px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  background: var(--bs-body-bg);
+  cursor: pointer;
+  line-height: 0;
+}
+.template-thumb-btn canvas {
+  width: 160px;
+  height: 84px;
+  border-radius: calc(var(--bs-border-radius) - 3px);
+  display: block;
+}
+.template-thumb-btn span {
+  display: block;
+  line-height: 1.6;
+  font-size: 0.75rem;
+  color: var(--bs-secondary-color);
+  text-align: center;
+}
+.template-thumb-btn.is-selected {
+  border-color: var(--paful-primary);
+}
+.template-thumb-btn.is-selected span { color: var(--paful-primary); font-weight: 600; }
+
+/* Readability list icons */
+.readability-item.text-success .bi,
+.readability-item.text-warning .bi { flex-shrink: 0; }
+
+.progress { height: 0.6rem; }
+
+/* Donate page */
+.donate-card {
+  background: linear-gradient(160deg, #e6262c 0%, #a80f16 100%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  color: #fff;
+  text-align: center;
+}
+.donate-pill {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 0.4rem 1.25rem;
+  font-weight: 600;
+}
+.payment-methods {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+.payment-method { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: #1a1a1a; font-weight: 700; min-width: 84px; font-size: 0.9rem; }
+.payment-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+}
+.ussd-box {
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  font-family: "Consolas", "SFMono-Regular", Menlo, monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}

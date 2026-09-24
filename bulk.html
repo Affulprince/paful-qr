@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk QR Generator | PAFUL QR</title>
+  <meta name="description" content="Upload a CSV of names and values to generate many QR codes at once and download them all as a ZIP file. Free for up to 100 per batch.">
+  <link rel="canonical" href="https://paful-qr.example.com/bulk.html">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b3c5d">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/paful-qr.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+
+  <nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html#top">
+        <span class="brand-mark"><i class="bi bi-qr-code"></i></span>
+        PAFUL<span class="brand-tag ms-1">QR</span>
+      </a>
+      <div class="d-flex align-items-center gap-2 order-lg-3">
+        <a href="donate.html" class="btn btn-sm btn-danger d-flex align-items-center gap-1">
+          <i class="bi bi-heart-fill"></i><span class="d-none d-sm-inline">Donate</span>
+        </a>
+        <button class="navbar-toggler" type="button" id="navToggle" data-bs-toggle="offcanvas" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="offcanvas offcanvas-end order-lg-2" tabindex="-1" id="primaryNav" aria-labelledby="primaryNavLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6" id="primaryNavLabel">Menu</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav flex-grow-1 mb-3 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html#generator">Generate</a></li>
+            <li class="nav-item"><a class="nav-link" href="scanner.html">Scan</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="bulk.html">Bulk QR</a></li>
+            <li class="nav-item"><a class="nav-link" href="history.html">My QR Codes</a></li>
+            <li class="nav-item"><a class="nav-link" href="templates.html">Templates</a></li>
+            <li class="nav-item"><a class="nav-link" href="business-card.html">Business Card</a></li>
+            <li class="nav-item"><a class="nav-link" href="social-media.html">Social Media</a></li>
+            <li class="nav-item"><a class="nav-link" href="donate.html">Donate</a></li>
+          </ul>
+          <div class="btn-group" role="group" aria-label="Theme">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="light" aria-pressed="false" aria-label="Light mode"><i class="bi bi-sun"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="dark" aria-pressed="false" aria-label="Dark mode"><i class="bi bi-moon-stars"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="system" aria-pressed="false" aria-label="Match system theme"><i class="bi bi-circle-half"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="container py-4">
+      <h1 class="h3">Bulk QR Generator</h1>
+      <p class="text-body-secondary mb-1">Upload a CSV with <code>name</code> and <code>value</code> columns to generate one QR code per row, then download them all as a ZIP.</p>
+      <p class="text-body-secondary small" id="bulkLimitNote"></p>
+    </div>
+
+    <div class="container pb-5">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="dropzone position-relative" id="csvDropzone" tabindex="0" role="button" aria-label="Upload CSV file">
+            <span class="dropzone-icon" aria-hidden="true"><i class="bi bi-file-earmark-spreadsheet"></i></span>
+            <p class="mb-2"><strong>Click to upload</strong> or drag and drop a CSV file here</p>
+            <p class="form-text mb-0">Example: <code>name,value</code> header row, then one row per QR code — e.g. <code>John,https://example.com/john</code></p>
+            <input type="file" id="csvInput" accept=".csv,text/csv">
+          </div>
+        </div>
+      </div>
+
+      <div id="bulkSummary" class="mb-3" hidden></div>
+
+      <div id="bulkTableWrap" class="table-responsive card border-0 shadow-sm mb-4" hidden>
+        <table class="table table-hover align-middle mb-0">
+          <thead><tr><th>Row</th><th>Name</th><th>Value</th><th>Status</th></tr></thead>
+          <tbody id="bulkTableBody"></tbody>
+        </table>
+      </div>
+
+      <div id="bulkProgress" class="mb-3" hidden>
+        <div class="progress"><div class="progress-bar" id="bulkProgressFill"></div></div>
+        <p class="form-text" id="bulkProgressLabel"></p>
+      </div>
+
+      <button type="button" id="generateZipBtn" class="btn btn-primary btn-lg" disabled><i class="bi bi-file-earmark-zip"></i> Download All as ZIP</button>
+    </div>
+  </main>
+
+  <footer class="border-top py-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2 small text-body-secondary">
+      <span>© <span id="year"></span> PAFUL QR. All rights reserved. Free, private, no account required.</span>
+      <button type="button" id="installBtn" class="btn btn-outline-secondary btn-sm" hidden><i class="bi bi-download"></i> Install App</button>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed end-0 p-3" style="top: 4.5rem; z-index: 1080;">
+    <div id="appToast" class="toast align-items-center text-bg-primary border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/qr-customizer.js"></script>
+  <script src="js/bulk-generator.js"></script>
+  <script src="js/bulk-page.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free QR Code Generator — Create, Customize &amp; Download | PAFUL QR</title>
+  <meta name="description" content="Create free QR codes for URLs, text, Wi-Fi, WhatsApp, contact cards, events and more. Customize, scan, download and print QR codes instantly with PAFUL QR.">
+  <link rel="canonical" href="https://paful-qr.example.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free QR Code Generator — PAFUL QR">
+  <meta property="og:description" content="Create, customize and download free QR codes instantly. No account required. Your data stays in your browser.">
+  <meta property="og:url" content="https://paful-qr.example.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free QR Code Generator — PAFUL QR">
+  <meta name="twitter:description" content="Create, customize and download free QR codes instantly. No account required.">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b3c5d">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/paful-qr.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PAFUL QR",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free QR code generator to create, customize, scan and download QR codes instantly with no account required."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is a QR code?", "acceptedAnswer": { "@type": "Answer", "text": "A QR code is a two-dimensional barcode that stores text, a link, or other data, and can be read instantly by a smartphone camera." } },
+      { "@type": "Question", "name": "Is PAFUL QR free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Static QR generation, customization, logos and downloads are completely free with no account required." } },
+      { "@type": "Question", "name": "Do static QR codes expire?", "acceptedAnswer": { "@type": "Answer", "text": "No. A static QR code does not expire by itself — it only stops working if the destination it points to stops working or changes." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="visually-hidden-focusable" href="#generator">Skip to generator</a>
+
+  <nav class="navbar navbar-expand-lg bd-navbar sticky-top bg-body border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#top">
+        <span class="brand-mark"><img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></span>
+        PAFUL<span class="brand-tag ms-1">QR</span>
+      </a>
+      <div class="d-flex align-items-center gap-2 order-lg-3">
+        <a href="donate.html" class="btn btn-sm btn-danger d-flex align-items-center gap-1">
+          <i class="bi bi-heart-fill"></i><span class="d-none d-sm-inline">Donate</span>
+        </a>
+        <button class="navbar-toggler" type="button" id="navToggle" data-bs-toggle="offcanvas" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="offcanvas offcanvas-end order-lg-2" tabindex="-1" id="primaryNav" aria-labelledby="primaryNavLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6" id="primaryNavLabel">Menu</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav flex-grow-1 mb-3 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#generator">Generate</a></li>
+            <li class="nav-item"><a class="nav-link" href="scanner.html">Scan</a></li>
+            <li class="nav-item"><a class="nav-link" href="bulk.html">Bulk QR</a></li>
+            <li class="nav-item"><a class="nav-link" href="history.html">My QR Codes</a></li>
+            <li class="nav-item"><a class="nav-link" href="templates.html">Templates</a></li>
+            <li class="nav-item"><a class="nav-link" href="business-card.html">Business Card</a></li>
+            <li class="nav-item"><a class="nav-link" href="social-media.html">Social Media</a></li>
+            <li class="nav-item"><a class="nav-link" href="donate.html">Donate</a></li>
+          </ul>
+          <div class="btn-group" role="group" aria-label="Theme">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="light" aria-pressed="false" aria-label="Light mode"><i class="bi bi-sun"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="dark" aria-pressed="false" aria-label="Dark mode"><i class="bi bi-moon-stars"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="system" aria-pressed="false" aria-label="Match system theme"><i class="bi bi-circle-half"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero-section text-center">
+      <div class="container">
+        <h1 class="display-6 fw-bold">Free QR Code Generator</h1>
+        <p class="lead text-body-secondary">Create, customize and download QR codes instantly — no account required.</p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap mb-3">
+          <a href="#generator" class="btn btn-primary btn-lg"><i class="bi bi-qr-code"></i> Create QR Code</a>
+          <a href="scanner.html" class="btn btn-outline-secondary btn-lg"><i class="bi bi-camera"></i> Scan QR Code</a>
+        </div>
+        <p class="text-body-secondary small"><i class="bi bi-shield-lock"></i> Your QR data is processed locally in your browser for static QR generation.</p>
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mt-4">
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-infinity fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">Free &amp; Unlimited</h3><p class="small text-body-secondary mb-0">Generate as many static QR codes as you like.</p></div></div></div>
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-unlock fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">No Registration</h3><p class="small text-body-secondary mb-0">No account, no sign-up, no email required.</p></div></div></div>
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-shield-check fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">Privacy Friendly</h3><p class="small text-body-secondary mb-0">QR content is encoded entirely in your browser.</p></div></div></div>
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-wifi fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">Works Offline</h3><p class="small text-body-secondary mb-0">Install it and keep generating without a connection.</p></div></div></div>
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-collection fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">Multiple QR Types</h3><p class="small text-body-secondary mb-0">URLs, Wi-Fi, WhatsApp, vCards, events and more.</p></div></div></div>
+          <div class="col"><div class="card h-100 border-0 shadow-sm"><div class="card-body text-center"><i class="bi bi-download fs-4 text-primary"></i><h3 class="h6 mt-2 mb-1">High-Res Downloads</h3><p class="small text-body-secondary mb-0">PNG, JPG, WebP and SVG, up to 2048px.</p></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5" id="generator">
+      <div class="container">
+        <div class="mb-4">
+          <h2 class="h3">Generate · Customize · Download</h2>
+          <p class="text-body-secondary">Choose a QR type, fill in the content, then customize the design. The preview updates live.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-7 order-2 order-lg-1">
+
+            <div class="card border-0 shadow-sm mb-4">
+              <div class="card-body">
+                <h2 class="h6 text-uppercase text-body-secondary mb-3">1. Choose QR Type</h2>
+                <div id="typePicker">
+
+                  <div class="mb-3">
+                    <div class="small fw-semibold text-body-secondary mb-2">Basic</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-url" value="url" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="type-url"><i class="bi bi-link-45deg"></i>URL</label>
+                      <input type="radio" class="btn-check" name="qrType" id="type-text" value="text" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-text"><i class="bi bi-fonts"></i>Text</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small fw-semibold text-body-secondary mb-2">Communication</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-whatsapp" value="whatsapp" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-whatsapp"><i class="bi bi-whatsapp"></i>WhatsApp</label>
+                      <input type="radio" class="btn-check" name="qrType" id="type-phone" value="phone" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-phone"><i class="bi bi-telephone"></i>Phone</label>
+                      <input type="radio" class="btn-check" name="qrType" id="type-sms" value="sms" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-sms"><i class="bi bi-chat-dots"></i>SMS</label>
+                      <input type="radio" class="btn-check" name="qrType" id="type-email" value="email" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-email"><i class="bi bi-envelope"></i>Email</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small fw-semibold text-body-secondary mb-2">Business</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-vcard" value="vcard" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-vcard"><i class="bi bi-person-vcard"></i>vCard</label>
+                      <input type="radio" class="btn-check" name="qrType" id="type-social" value="social" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-social"><i class="bi bi-share"></i>Social</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small fw-semibold text-body-secondary mb-2">Connectivity</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-wifi" value="wifi" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-wifi"><i class="bi bi-wifi"></i>Wi-Fi</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small fw-semibold text-body-secondary mb-2">Location</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-location" value="location" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-location"><i class="bi bi-geo-alt"></i>Location</label>
+                    </div>
+                  </div>
+
+                  <div class="mb-0">
+                    <div class="small fw-semibold text-body-secondary mb-2">Events</div>
+                    <div class="type-picker-group">
+                      <input type="radio" class="btn-check" name="qrType" id="type-event" value="event" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="type-event"><i class="bi bi-calendar-event"></i>Event</label>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+              <div class="card-body">
+                <h2 class="h6 text-uppercase text-body-secondary mb-3">2. Content</h2>
+                <div id="formErrors" hidden></div>
+
+                <div id="contentForms">
+
+                  <div data-type-form="url">
+                    <div class="mb-3">
+                      <label for="f-url" class="form-label">Website URL</label>
+                      <input type="text" class="form-control form-control-lg" id="f-url" data-field="url" placeholder="example.com or https://example.com" value="https://example.com">
+                    </div>
+                  </div>
+
+                  <div data-type-form="text" hidden>
+                    <div class="mb-3">
+                      <label for="f-text" class="form-label">Text</label>
+                      <textarea class="form-control" id="f-text" data-field="text" placeholder="Any text you'd like to encode"></textarea>
+                    </div>
+                  </div>
+
+                  <div data-type-form="whatsapp" hidden>
+                    <div class="row g-3 mb-3">
+                      <div class="col-4">
+                        <label for="f-wa-code" class="form-label">Country code</label>
+                        <input type="text" class="form-control" id="f-wa-code" data-field="countryCode" placeholder="+233">
+                      </div>
+                      <div class="col-8">
+                        <label for="f-wa-phone" class="form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="f-wa-phone" data-field="phone" placeholder="509138770">
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-wa-message" class="form-label">Message (optional)</label>
+                      <textarea class="form-control" id="f-wa-message" data-field="message" placeholder="Hello, I would like more information."></textarea>
+                    </div>
+                  </div>
+
+                  <div data-type-form="phone" hidden>
+                    <div class="mb-3">
+                      <label for="f-phone" class="form-label">Phone number</label>
+                      <input type="tel" class="form-control" id="f-phone" data-field="phone" placeholder="+233509138770">
+                    </div>
+                  </div>
+
+                  <div data-type-form="sms" hidden>
+                    <div class="mb-3">
+                      <label for="f-sms-phone" class="form-label">Phone number</label>
+                      <input type="tel" class="form-control" id="f-sms-phone" data-field="phone" placeholder="+233509138770">
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-sms-message" class="form-label">Message (optional)</label>
+                      <textarea class="form-control" id="f-sms-message" data-field="message"></textarea>
+                    </div>
+                  </div>
+
+                  <div data-type-form="email" hidden>
+                    <div class="mb-3">
+                      <label for="f-email" class="form-label">Email address</label>
+                      <input type="email" class="form-control" id="f-email" data-field="email" placeholder="hello@example.com">
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-email-subject" class="form-label">Subject (optional)</label>
+                      <input type="text" class="form-control" id="f-email-subject" data-field="subject">
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-email-body" class="form-label">Message (optional)</label>
+                      <textarea class="form-control" id="f-email-body" data-field="body"></textarea>
+                    </div>
+                  </div>
+
+                  <div data-type-form="vcard" hidden>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-vc-first" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="f-vc-first" data-field="firstName">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-vc-last" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="f-vc-last" data-field="lastName">
+                      </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-vc-org" class="form-label">Organization</label>
+                        <input type="text" class="form-control" id="f-vc-org" data-field="org">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-vc-title" class="form-label">Job title</label>
+                        <input type="text" class="form-control" id="f-vc-title" data-field="title">
+                      </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-vc-phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="f-vc-phone" data-field="phone">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-vc-email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="f-vc-email" data-field="email">
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-vc-website" class="form-label">Website</label>
+                      <input type="text" class="form-control" id="f-vc-website" data-field="website">
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-vc-address" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="f-vc-address" data-field="address">
+                    </div>
+                  </div>
+
+                  <div data-type-form="social" hidden>
+                    <div class="mb-3">
+                      <label for="f-social-platform" class="form-label">Platform</label>
+                      <select class="form-select" id="f-social-platform" data-field="platform">
+                        <option value="facebook">Facebook</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="x">X (Twitter)</option>
+                        <option value="whatsapp">WhatsApp</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-social-handle" class="form-label">Profile URL or username</label>
+                      <input type="text" class="form-control" id="f-social-handle" data-field="handle" placeholder="@yourhandle or full profile URL">
+                    </div>
+                  </div>
+
+                  <div data-type-form="wifi" hidden>
+                    <div class="mb-3">
+                      <label for="f-wifi-ssid" class="form-label">Network name (SSID)</label>
+                      <input type="text" class="form-control" id="f-wifi-ssid" data-field="ssid">
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-wifi-security" class="form-label">Security type</label>
+                        <select class="form-select" id="f-wifi-security" data-field="security">
+                          <option value="WPA">WPA/WPA2</option>
+                          <option value="WEP">WEP</option>
+                          <option value="nopass">None (open)</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-wifi-password" class="form-label">Password</label>
+                        <input type="text" class="form-control" id="f-wifi-password" data-field="password">
+                      </div>
+                    </div>
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="f-wifi-hidden" data-field="hidden">
+                      <label class="form-check-label" for="f-wifi-hidden">Hidden network</label>
+                    </div>
+                  </div>
+
+                  <div data-type-form="location" hidden>
+                    <div class="mb-3">
+                      <label for="f-loc-url" class="form-label">Google Maps URL (optional)</label>
+                      <input type="text" class="form-control" id="f-loc-url" data-field="mapsUrl" placeholder="https://maps.google.com/...">
+                    </div>
+                    <div class="row g-3">
+                      <div class="col-sm-6">
+                        <label for="f-loc-lat" class="form-label">Latitude</label>
+                        <input type="text" class="form-control" id="f-loc-lat" data-field="lat" placeholder="5.6037">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-loc-lng" class="form-label">Longitude</label>
+                        <input type="text" class="form-control" id="f-loc-lng" data-field="lng" placeholder="-0.1870">
+                      </div>
+                    </div>
+                    <div class="form-text">Provide either a Maps URL or coordinates.</div>
+                  </div>
+
+                  <div data-type-form="event" hidden>
+                    <div class="mb-3">
+                      <label for="f-ev-name" class="form-label">Event name</label>
+                      <input type="text" class="form-control" id="f-ev-name" data-field="name">
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-ev-start-date" class="form-label">Start date</label>
+                        <input type="date" class="form-control" id="f-ev-start-date" data-field="startDate">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-ev-start-time" class="form-label">Start time</label>
+                        <input type="time" class="form-control" id="f-ev-start-time" data-field="startTime">
+                      </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="f-ev-end-date" class="form-label">End date</label>
+                        <input type="date" class="form-control" id="f-ev-end-date" data-field="endDate">
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="f-ev-end-time" class="form-label">End time</label>
+                        <input type="time" class="form-control" id="f-ev-end-time" data-field="endTime">
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-ev-location" class="form-label">Location</label>
+                      <input type="text" class="form-control" id="f-ev-location" data-field="location">
+                    </div>
+                    <div class="mb-3">
+                      <label for="f-ev-description" class="form-label">Description</label>
+                      <textarea class="form-control" id="f-ev-description" data-field="description"></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion mb-4" id="customizeAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDesign" aria-expanded="true" aria-controls="collapseDesign">
+                    3. Design
+                  </button>
+                </h2>
+                <div id="collapseDesign" class="accordion-collapse collapse show">
+                  <div class="accordion-body">
+
+                    <div class="row g-3 mb-3">
+                      <div class="col-6">
+                        <label for="fgColor" class="form-label">QR color</label>
+                        <input type="color" class="form-control form-control-color" id="fgColor" value="#0b3c5d">
+                      </div>
+                      <div class="col-6">
+                        <label for="bgColor" class="form-label">Background color</label>
+                        <input type="color" class="form-control form-control-color" id="bgColor" value="#ffffff">
+                      </div>
+                    </div>
+                    <div class="form-check mb-3">
+                      <input type="checkbox" class="form-check-input" id="transparentBg">
+                      <label class="form-check-label" for="transparentBg">Transparent background (PNG/SVG only)</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input type="checkbox" class="form-check-input" id="gradientEnabled">
+                      <label class="form-check-label" for="gradientEnabled">Use a gradient instead of a solid color</label>
+                    </div>
+                    <div id="gradientFields" class="mb-3" hidden>
+                      <div class="row g-3 mb-3">
+                        <div class="col-6">
+                          <label for="gradientFrom" class="form-label">From</label>
+                          <input type="color" class="form-control form-control-color" id="gradientFrom" value="#0b3c5d">
+                        </div>
+                        <div class="col-6">
+                          <label for="gradientTo" class="form-label">To</label>
+                          <input type="color" class="form-control form-control-color" id="gradientTo" value="#17a2b8">
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="gradientType" class="form-label">Gradient type</label>
+                        <select class="form-select" id="gradientType">
+                          <option value="linear">Linear</option>
+                          <option value="radial">Radial</option>
+                        </select>
+                      </div>
+                      <div class="mb-0">
+                        <label for="gradientRotation" class="form-label">Angle</label>
+                        <input type="range" class="form-range" id="gradientRotation" min="0" max="360" value="0">
+                        <output>0°</output>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="dotStyle" class="form-label">Pattern style</label>
+                      <select class="form-select" id="dotStyle">
+                        <option value="square">Square</option>
+                        <option value="dots">Dots</option>
+                        <option value="rounded">Rounded</option>
+                        <option value="extra-rounded">Extra rounded</option>
+                      </select>
+                    </div>
+                    <div class="row g-3 mb-3">
+                      <div class="col-sm-6">
+                        <label for="cornerSquareStyle" class="form-label">Eye frame style</label>
+                        <select class="form-select" id="cornerSquareStyle">
+                          <option value="square">Square</option>
+                          <option value="extra-rounded">Rounded</option>
+                          <option value="dot">Circle</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-6">
+                        <label for="cornerDotStyle" class="form-label">Eye center style</label>
+                        <select class="form-select" id="cornerDotStyle">
+                          <option value="square">Square</option>
+                          <option value="dot">Circle</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="mb-0">
+                      <label for="errorCorrection" class="form-label">Error correction</label>
+                      <select class="form-select" id="errorCorrection">
+                        <option value="L">Low</option>
+                        <option value="M" selected>Medium</option>
+                        <option value="Q">Quartile</option>
+                        <option value="H">High</option>
+                      </select>
+                      <div class="form-text">Higher error correction improves resilience when using a logo or heavy styling.</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLogo" aria-expanded="false" aria-controls="collapseLogo">
+                    4. Logo
+                  </button>
+                </h2>
+                <div id="collapseLogo" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <div class="mb-3">
+                      <label for="logoInput" class="form-label">Upload logo</label>
+                      <input type="file" class="form-control" id="logoInput" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+                      <div class="form-text">PNG, JPG, SVG or WebP, up to 2MB.</div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                      <img id="logoPreview" alt="Uploaded logo preview" class="border rounded p-1" style="width:56px;height:56px;object-fit:contain;" hidden>
+                      <button type="button" id="logoRemove" class="btn btn-outline-secondary btn-sm" hidden>Remove logo</button>
+                    </div>
+                    <div id="logoControls" hidden>
+                      <div class="mb-3">
+                        <label for="logoSize" class="form-label">Logo size</label>
+                        <input type="range" class="form-range" id="logoSize" min="10" max="50" value="40">
+                        <output>40%</output>
+                      </div>
+                      <div class="mb-3">
+                        <label for="logoMargin" class="form-label">Logo padding</label>
+                        <input type="range" class="form-range" id="logoMargin" min="0" max="20" value="6">
+                        <output>6px</output>
+                      </div>
+                      <div class="form-check mb-2">
+                        <input type="checkbox" class="form-check-input" id="logoBackground" checked>
+                        <label class="form-check-label" for="logoBackground">Clear background behind logo</label>
+                      </div>
+                      <div class="form-check mb-0">
+                        <input type="checkbox" class="form-check-input" id="logoRounded">
+                        <label class="form-check-label" for="logoRounded">Round logo container</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdvanced" aria-expanded="false" aria-controls="collapseAdvanced">
+                    5. Advanced
+                  </button>
+                </h2>
+                <div id="collapseAdvanced" class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <div class="mb-3">
+                      <label for="quietZone" class="form-label">Quiet zone margin</label>
+                      <input type="range" class="form-range" id="quietZone" min="0" max="40" value="12">
+                      <output>12px</output>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cardTitle" class="form-label">Print title (optional)</label>
+                      <input type="text" class="form-control" id="cardTitle" placeholder="e.g. Scan to visit our website">
+                    </div>
+                    <div class="mb-3">
+                      <label for="cardDescription" class="form-label">Print description (optional)</label>
+                      <input type="text" class="form-control" id="cardDescription">
+                    </div>
+                    <div class="mb-0">
+                      <label for="collectionInput" class="form-label">Collection (optional)</label>
+                      <input type="text" class="form-control" id="collectionInput" list="collectionSuggestions" placeholder="e.g. Business, Church, Events">
+                      <datalist id="collectionSuggestions">
+                        <option value="Business">
+                        <option value="Restaurant">
+                        <option value="Church">
+                        <option value="Events">
+                        <option value="Personal">
+                      </datalist>
+                      <div class="form-text">Used to group saved QR codes on the My QR Codes page.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 order-1 order-lg-2">
+            <div class="sticky-lg-top" style="top: 5rem;">
+              <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body text-center" id="printArea">
+                  <div id="qrPreview" class="qr-preview-box is-empty" aria-live="polite" aria-label="QR code preview"></div>
+                  <div class="mt-2">
+                    <div id="printCardTitle" class="fw-semibold" hidden></div>
+                    <div id="printCardDescription" class="small text-body-secondary" hidden></div>
+                    <div id="printCardContent"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                  <h2 class="h6 mb-2">QR Readability</h2>
+                  <ul id="readabilityList" class="list-group list-group-flush small"></ul>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                  <h2 class="h6 mb-3">Download</h2>
+                  <div class="btn-group w-100 mb-3" role="group" aria-label="Download size" id="sizeOptions">
+                    <button type="button" class="btn btn-outline-secondary" data-size-option="512" aria-pressed="false">512px</button>
+                    <button type="button" class="btn btn-outline-secondary active" data-size-option="1024" aria-pressed="true">1024px</button>
+                    <button type="button" class="btn btn-outline-secondary" data-size-option="2048" aria-pressed="false">2048px</button>
+                    <button type="button" class="btn btn-outline-secondary" data-size-option="custom" aria-pressed="false">Custom</button>
+                  </div>
+                  <input type="number" class="form-control mb-3" id="customSize" min="128" max="4096" value="1024" hidden aria-label="Custom download size in pixels">
+
+                  <div class="row row-cols-2 g-2 mb-3" id="downloadActions">
+                    <div class="col"><button type="button" data-download-format="png" class="btn btn-primary w-100"><i class="bi bi-filetype-png"></i> PNG</button></div>
+                    <div class="col"><button type="button" data-download-format="jpeg" class="btn btn-outline-secondary w-100"><i class="bi bi-filetype-jpg"></i> JPG</button></div>
+                    <div class="col"><button type="button" data-download-format="webp" class="btn btn-outline-secondary w-100"><i class="bi bi-filetype-raw"></i> WebP</button></div>
+                    <div class="col"><button type="button" data-download-format="svg" class="btn btn-outline-secondary w-100"><i class="bi bi-filetype-svg"></i> SVG</button></div>
+                  </div>
+
+                  <div class="d-flex flex-wrap gap-2" id="shareActions">
+                    <button type="button" id="printBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-printer"></i> Print</button>
+                    <button type="button" id="shareBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-share"></i> Share</button>
+                    <button type="button" id="copyImageBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-clipboard-image"></i> Copy QR</button>
+                    <button type="button" id="copyContentBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-clipboard"></i> Copy Content</button>
+                    <button type="button" id="saveHistoryBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-bookmark-plus"></i> Save to My QR Codes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 bg-body-tertiary" id="faq">
+      <div class="container">
+        <h2 class="h3 mb-4">Frequently asked questions</h2>
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">What is a QR code?</button></h3>
+            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">A QR (Quick Response) code is a two-dimensional barcode that stores text, links, or other data and can be read instantly by a smartphone camera.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">Is PAFUL QR free?</button></h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. Static QR generation, customization, logos and downloads are completely free, with no account required.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">Do I need an account?</button></h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">No. You can generate, scan and download QR codes without registering or signing in.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">Do static QR codes expire?</button></h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">No, a static QR code does not expire by itself. It only stops working if the destination it points to (a website, phone number, etc.) stops working or changes.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">Can I add a logo?</button></h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. Upload an image in the Logo panel and adjust its size, padding and background. Using a higher error correction level helps keep the code scannable.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">Can I generate Wi-Fi QR codes?</button></h3>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. Choose the Wi-Fi type, enter your network name, password and security type, and compatible phones can join the network by scanning the code.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">Can I create QR codes in bulk?</button></h3>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. The <a href="bulk.html">Bulk QR</a> page turns a CSV of names and values into one QR code per row, downloadable as a single ZIP file — free for up to 100 per batch.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">Can I scan QR codes?</button></h3>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes. The <a href="scanner.html">Scan</a> page reads QR codes with your camera or from an uploaded image, entirely on your device.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">Does PAFUL QR work offline?</button></h3>
+            <div id="faq9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">Yes, after your first visit the generator is cached for offline use. Some browsers also let you install PAFUL QR as an app.</div></div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">Are my QR codes stored online?</button></h3>
+            <div id="faq10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"><div class="accordion-body">No. QR content is processed locally in your browser. If you use "Save to My QR Codes," it's stored only in this browser's local storage — never uploaded.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-top py-5 mt-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-5">
+          <div class="d-flex align-items-center mb-2">
+            <span class="brand-mark"><i class="bi bi-qr-code"></i></span>
+            <strong class="ms-2">PAFUL QR</strong>
+          </div>
+          <p class="text-body-secondary small mb-0">Free QR Code Generator<br>Generate · Customize · Scan · Share</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="h6">Product</h3>
+          <ul class="list-unstyled small">
+            <li><a class="link-secondary link-underline-opacity-0" href="#generator">Generate QR</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="scanner.html">Scan QR</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="templates.html">Templates</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="bulk.html">Bulk QR</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="business-card.html">Business Card</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="social-media.html">Social Media QR</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2">
+          <h3 class="h6">Tools</h3>
+          <ul class="list-unstyled small">
+            <li><a class="link-secondary link-underline-opacity-0" href="scanner.html">QR Scanner</a></li>
+            <li><a class="link-secondary link-underline-opacity-0" href="history.html">My QR Codes</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2">
+          <h3 class="h6">Support</h3>
+          <ul class="list-unstyled small">
+            <li><a class="link-secondary link-underline-opacity-0" href="donate.html">Donate</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 small text-body-secondary">
+        <span>© <span id="year"></span> PAFUL QR. All rights reserved. Free, private, no account required.</span>
+        <button type="button" id="installBtn" class="btn btn-outline-secondary btn-sm" hidden><i class="bi bi-download"></i> Install App</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed end-0 p-3" style="top: 4.5rem; z-index: 1080;">
+    <div id="appToast" class="toast align-items-center text-bg-primary border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/qr-generator.js"></script>
+  <script src="js/qr-customizer.js"></script>
+  <script src="js/qr-readability.js"></script>
+  <script src="js/qr-history.js"></script>
+  <script src="js/sharing.js"></script>
+  <script src="js/qr-tracking.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dynamic-content.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

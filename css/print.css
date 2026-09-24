@@ -1,0 +1,28 @@
+/* Only the QR preview card is printed; everything else is hidden. */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printArea, #printArea * {
+    visibility: visible;
+  }
+
+  #printArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 40px auto;
+    box-shadow: none;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  #printCardContent {
+    word-break: break-all;
+    font-size: 11px;
+    color: #444 !important;
+  }
+}

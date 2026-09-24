@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Templates | PAFUL QR</title>
+  <meta name="description" content="Ready-made QR code presets for business, restaurants, churches, events and personal profiles — pick one and edit anything before you download.">
+  <link rel="canonical" href="https://paful-qr.example.com/templates.html">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b3c5d">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/paful-qr.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+  <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+
+  <nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html#top">
+        <span class="brand-mark"><i class="bi bi-qr-code"></i></span>
+        PAFUL<span class="brand-tag ms-1">QR</span>
+      </a>
+      <div class="d-flex align-items-center gap-2 order-lg-3">
+        <a href="donate.html" class="btn btn-sm btn-danger d-flex align-items-center gap-1">
+          <i class="bi bi-heart-fill"></i><span class="d-none d-sm-inline">Donate</span>
+        </a>
+        <button class="navbar-toggler" type="button" id="navToggle" data-bs-toggle="offcanvas" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="offcanvas offcanvas-end order-lg-2" tabindex="-1" id="primaryNav" aria-labelledby="primaryNavLabel">
+        <div class="offcanvas-header">
+          <h2 class="offcanvas-title h6" id="primaryNavLabel">Menu</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav flex-grow-1 mb-3 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html#generator">Generate</a></li>
+            <li class="nav-item"><a class="nav-link" href="scanner.html">Scan</a></li>
+            <li class="nav-item"><a class="nav-link" href="bulk.html">Bulk QR</a></li>
+            <li class="nav-item"><a class="nav-link" href="history.html">My QR Codes</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="templates.html">Templates</a></li>
+            <li class="nav-item"><a class="nav-link" href="business-card.html">Business Card</a></li>
+            <li class="nav-item"><a class="nav-link" href="social-media.html">Social Media</a></li>
+            <li class="nav-item"><a class="nav-link" href="donate.html">Donate</a></li>
+          </ul>
+          <div class="btn-group" role="group" aria-label="Theme">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="light" aria-pressed="false" aria-label="Light mode"><i class="bi bi-sun"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="dark" aria-pressed="false" aria-label="Dark mode"><i class="bi bi-moon-stars"></i></button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-theme-option="system" aria-pressed="false" aria-label="Match system theme"><i class="bi bi-circle-half"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="container py-4">
+      <h1 class="h3">QR Templates</h1>
+      <p class="text-body-secondary">Preconfigured content types and colors for common use cases. Pick one, then edit any field, color or logo before you download — nothing is locked.</p>
+    </div>
+
+    <div class="container pb-5">
+      <div id="templateGroups"></div>
+    </div>
+  </main>
+
+  <footer class="border-top py-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2 small text-body-secondary">
+      <span>© <span id="year"></span> PAFUL QR. All rights reserved. Free, private, no account required.</span>
+      <button type="button" id="installBtn" class="btn btn-outline-secondary btn-sm" hidden><i class="bi bi-download"></i> Install App</button>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed end-0 p-3" style="top: 4.5rem; z-index: 1080;">
+    <div id="appToast" class="toast align-items-center text-bg-primary border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/qr-history.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/templates-page.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>
