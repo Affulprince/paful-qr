@@ -201,6 +201,26 @@ as before. The optional Admin Panel (below) needs PHP 8.1+ and MySQL if you
 want it; without that, every public page still works from its own
 hardcoded content, unchanged.
 
+### Automatic deploy (GitHub Actions)
+
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml) lints the PHP
+and then rsyncs the site to the hosting account over SSH on every push to
+`main` (or manually from the Actions tab). One-time setup:
+
+1. Generate a dedicated key: `ssh-keygen -t ed25519 -f ~/.ssh/paful_qr_deploy -C github-actions-paful-qr`
+   (no passphrase).
+2. In cPanel → **SSH Access** → **Manage SSH Keys** → **Import Key**, paste
+   `paful_qr_deploy.pub` as the *public* key, then **Manage → Authorize** it.
+3. In GitHub → Settings → Secrets and variables → Actions, add:
+   `SERVER_HOST`, `SERVER_USER`, `SERVER_SSH_KEY` (contents of the private
+   `paful_qr_deploy` file), `DEPLOY_PATH` (e.g.
+   `/home/pafulmul/qrcodegen.pafulmulti.com`) and, if SSH isn't on 22,
+   `SERVER_PORT`.
+
+`config/config.php` is uploaded only if it doesn't exist on the server yet,
+so live DB credentials edited there are never overwritten. Nothing on the
+server is deleted.
+
 ## Modifying free limits
 
 All usage limits live in one place, [js/config.js](js/config.js):

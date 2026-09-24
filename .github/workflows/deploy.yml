@@ -1,0 +1,86 @@
+name: Deploy to server
+
+# Pushes to main (or a manual run from the Actions tab) upload the site to the
+# cPanel hosting account over SSH with rsync. There is no build step: the repo
+# is the site.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   SERVER_HOST     SSH hostname of the hosting account (e.g. qrcodegen.pafulmulti.com)
+#   SERVER_USER     cPanel/SSH username (e.g. pafulmul)
+#   SERVER_SSH_KEY  private key whose public half is authorized in cPanel -> SSH Access
+#   DEPLOY_PATH     absolute docroot on the server (e.g. /home/pafulmul/qrcodegen.pafulmulti.com)
+# Optional:
+#   SERVER_PORT     SSH port (defaults to 22; many shared hosts use another port)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: PHP syntax check
+        run: |
+          find . -name '*.php' -not -path './.git/*' -print0 \
+            | xargs -0 -n1 php -l > /dev/null
+
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT || '22' }}
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SERVER_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SERVER_PORT" -H "$SERVER_HOST" >> ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<CFG
+          Host deploy-target
+            HostName $SERVER_HOST
+            Port $SERVER_PORT
+            User ${{ secrets.SERVER_USER }}
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+          CFG
+
+      - name: Test SSH connection
+        run: ssh deploy-target 'echo "Connected as $(whoami) on $(hostname)"'
+
+      - name: Upload site
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        # config/config.php holds the live DB credentials on the server, so it
+        # is only uploaded on the very first deploy and never overwritten after.
+        # No --delete: the docroot may hold cPanel files (.htaccess,
+        # .well-known, error_log) that aren't in the repo.
+        run: |
+          rsync -avz \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'README.md' \
+            --exclude 'config/config.php' \
+            ./ "deploy-target:${DEPLOY_PATH%/}/"
+          rsync -avz --ignore-existing \
+            config/config.php "deploy-target:${DEPLOY_PATH%/}/config/config.php"
+
+      - name: Clean up key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
