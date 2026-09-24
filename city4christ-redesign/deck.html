@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>City4Christ UI/UX Redesign</title>
+<style>
+  @font-face { font-family: "Plus Jakarta Sans"; src: url("fonts/PlusJakartaSans.woff2") format("woff2"); font-weight: 200 800; font-style: normal; }
+  :root {
+    --navy: #160d2e;
+    --navy-2: #241647;
+    --purple: #6b3fe0;
+    --purple-2: #8a5cf6;
+    --gold: #f4b73b;
+    --lav: #f3effd;
+    --lav-2: #e6defb;
+    --ink: #1d1530;
+    --muted: #6a6380;
+    --line: #ddd5f2;
+  }
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: "Plus Jakarta Sans", system-ui, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .slide {
+    width: 1280px; height: 720px; position: relative; overflow: hidden;
+    page-break-after: always; break-after: page;
+    background: #fff; padding: 56px 64px;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .dark { background: radial-gradient(1200px 600px at 85% 0%, #3a1f7a 0%, var(--navy) 60%); color: #fff; }
+  .soft { background: var(--lav); }
+
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+  .dark .kicker { color: var(--gold); }
+  h1 { font-size: 60px; line-height: 1.05; font-weight: 800; letter-spacing: -.02em; }
+  h2 { font-size: 38px; line-height: 1.1; font-weight: 800; letter-spacing: -.015em; margin-bottom: 8px; }
+  h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+  .dark h3 { color: #fff; }
+  .lead { font-size: 18px; line-height: 1.5; color: var(--muted); max-width: 820px; }
+  .dark .lead { color: #cfc6ea; }
+  p, li { font-size: 14px; line-height: 1.5; }
+  ul { list-style: none; }
+  ul.dots li { padding-left: 16px; position: relative; margin-bottom: 4px; }
+  ul.dots li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+  .dark ul.dots li::before { background: var(--gold); }
+
+  .footer { position: absolute; left: 64px; right: 64px; bottom: 22px; display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+  .dark .footer { color: #9a8fc4; }
+
+  .row { display: flex; gap: 32px; flex: 1; min-height: 0; margin-top: 22px; }
+  .col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; }
+  .soft .card { border-color: #e2d9f7; }
+  .dark .card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
+  .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill { font-size: 12px; font-weight: 600; padding: 4px 11px; border-radius: 999px; background: var(--lav-2); color: #4b2bb0; }
+  .pill.gold { background: #fdecc5; color: #8a5a00; }
+  .dark .pill { background: rgba(255,255,255,.1); color: #fff; }
+  pre, .mono { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 12.5px; line-height: 1.5; color: #3a2d63; white-space: pre; }
+  .dark pre { color: #e3dcff; }
+
+  /* Screenshot crops from the mockup sheet (1536 x 1024) */
+  .shot { border-radius: 22px; background-image: url("mockups.webp"); background-repeat: no-repeat; box-shadow: 0 18px 40px rgba(40,20,90,.28); flex: none; }
+  .shot.desk { border-radius: 10px; }
+  .cap { font-size: 11px; font-weight: 600; color: var(--muted); text-align: center; margin-top: 8px; letter-spacing: .06em; text-transform: uppercase; }
+  .dark .cap { color: #b5a9dd; }
+
+  .num { font-size: 12px; font-weight: 800; color: var(--purple); background: var(--lav-2); width: 26px; height: 26px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Cover -->
+<section class="slide dark">
+  <div style="display:flex;gap:40px;height:100%;align-items:center">
+    <div style="flex:0 0 470px">
+      <div class="kicker">UI/UX Redesign · Mobile &amp; Desktop</div>
+      <h1>City4Christ<br>Member App</h1>
+      <p class="lead" style="margin-top:20px">One unified church community platform for the Bible, fellowship, prayer, ministry groups, sermons, events and member relationships.</p>
+      <div class="pills" style="margin-top:28px">
+        <span class="pill">Dashboard</span><span class="pill">Ministry Groups</span><span class="pill">Profile</span><span class="pill">Sermons &amp; Media</span><span class="pill">Prayer Wall</span>
+      </div>
+    </div>
+    <div class="shot" data-crop="0,0,1536,1024" data-w="660" style="border-radius:16px"></div>
+  </div>
+  <div class="footer"><span>City4Christ · Design Presentation</span><span>2026</span></div>
+</section>
+
+<!-- 2. Vision -->
+<section class="slide">
+  <div class="kicker">01 · Design Vision</div>
+  <h2>From separate feature mockups to one platform</h2>
+  <p class="lead">The original screens read as individual feature mockups. The redesign should feel like one church social and community platform. It should be as easy to use as a modern social app, but built around faith and fellowship.</p>
+  <div class="row" style="gap:18px;flex:none">
+    <div class="card" style="flex:1"><h3>Unified</h3><p>One design system, one navigation model and shared components across every module.</p></div>
+    <div class="card" style="flex:1"><h3>Participatory</h3><p>Members pray, post, join and RSVP, not only read. Actions like “I Prayed For This” record real participation.</p></div>
+    <div class="card" style="flex:1"><h3>Word-centred</h3><p>Scripture, devotionals and sermons appear everywhere, starting with the verse on the home screen.</p></div>
+    <div class="card" style="flex:1"><h3>Device-native</h3><p>Mobile and desktop are separate layouts built on one design system. Desktop is not a stretched phone screen.</p></div>
+  </div>
+  <div class="card soft" style="margin-top:18px;background:var(--lav);border:none">
+    <h3>The five core modules</h3>
+    <div class="pills"><span class="pill">1 · Home / Member Dashboard</span><span class="pill">2 · Ministry Groups</span><span class="pill">3 · Member Profile</span><span class="pill">4 · Sermons &amp; Media</span><span class="pill">5 · Prayer Wall</span></div>
+    <p style="margin-top:10px;color:var(--muted)">Each one has a mobile composition and a desktop counterpart.</p>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>2</span></div>
+</section>
+
+<!-- 3. Home -->
+<section class="slide soft">
+  <div class="kicker">02 · Home / Member Dashboard</div>
+  <h2>A daily starting point</h2>
+  <div class="row">
+    <div><div class="shot" data-crop="22,12,312,676" data-h="470"></div><div class="cap">Mobile</div></div>
+    <div class="col" style="flex:1">
+      <div class="card"><h3>Header</h3><p>City4Christ logo · Search · Notifications · Member avatar</p></div>
+      <div class="card"><h3>Hero / Daily Scripture</h3><p>Scripture of the day, Bible reference, a Listen button and a Daily Devotional button</p></div>
+      <div class="card"><h3>Quick Actions</h3><div class="pills"><span class="pill">🙏 Prayer Wall</span><span class="pill">🎙 Sermons</span><span class="pill">👥 Groups</span><span class="pill">📖 Bible</span><span class="pill">📅 Events</span></div></div>
+      <div class="card"><h3>Upcoming Events</h3><p>Date · Title · Time · Location or Online · <b>RSVP / Remind Me</b></p></div>
+      <div class="card"><h3>Fellowship Feed</h3><p>Member posts with reactions, comments, share and a more menu</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>3</span></div>
+</section>
+
+<!-- 4. Home desktop -->
+<section class="slide">
+  <div class="kicker">02 · Home / Member Dashboard, Desktop</div>
+  <h2>Three-column dashboard</h2>
+  <div class="row" style="flex-direction:column;gap:18px">
+    <div class="shot desk" data-crop="0,703,481,318" data-w="560" style="align-self:center"></div>
+    <div style="display:flex;gap:18px">
+      <div class="card" style="flex:1"><h3>Left · Sidebar</h3><p>Home · Bible / Word · Sermons · Ministry Groups · Events · Prayer Wall · Chat · Members · Notifications</p></div>
+      <div class="card" style="flex:1"><h3>Center · Content</h3><p>Scripture hero · Events · Fellowship feed</p></div>
+      <div class="card" style="flex:1"><h3>Right · Context</h3><p>Upcoming events · Prayer activity · Suggested groups · Online members</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>4</span></div>
+</section>
+
+<!-- 5. Groups -->
+<section class="slide soft">
+  <div class="kicker">03 · Ministry Groups</div>
+  <h2>Search, filter, compact cards</h2>
+  <div class="row">
+    <div><div class="shot" data-crop="355,12,286,676" data-h="470"></div><div class="cap">Mobile</div></div>
+    <div class="col" style="flex:1">
+      <p class="lead" style="font-size:15px">Replace the original large cards with a cleaner layout built on search, filters and compact cards.</p>
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Tabs &amp; search</h3><pre>All Groups | My Groups | Nearby
+
+🔍 Search groups...</pre></div>
+        <div class="card" style="flex:1"><h3>Filters</h3><div class="pills"><span class="pill">Ministry</span><span class="pill">Age group</span><span class="pill">Gender</span><span class="pill">Location</span><span class="pill">Meeting day</span><span class="pill">Online / physical</span></div></div>
+      </div>
+      <div class="card"><h3>Group card, for example Youth Explosion</h3>
+        <ul class="dots" style="columns:2">
+          <li>Group image</li><li>Leader</li><li>Phone / contact</li><li>Meeting day &amp; time</li><li>Member count</li><li>Short description</li><li><b>View Group</b> · <b>Join Group</b></li>
+        </ul>
+      </div>
+      <div class="card"><h3>Desktop</h3><p>A two-column card grid. A right panel shows group information: leader, meeting schedule, location, members and upcoming activities.</p></div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>5</span></div>
+</section>
+
+<!-- 6. Group detail -->
+<section class="slide">
+  <div class="kicker">03 · Ministry Groups, Detail &amp; Desktop</div>
+  <h2>Every group gets a home</h2>
+  <div class="row">
+    <div class="card" style="flex:0 0 360px;background:var(--lav);border:none">
+      <h3>Group detail page (mobile)</h3>
+<pre>[ Cover Image ]
+
+Youth Explosion
+Youth Ministry
+
+Leader: Youth Minister
+Friday • 7:00 PM
+156 Members
+
+[ Join Group ]
+
+About · Group Feed · Members
+Events · Discussion · Media</pre>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+      <div class="shot desk" data-crop="481,703,358,318" data-w="520"></div>
+      <div class="cap">Desktop · two-column group grid</div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>6</span></div>
+</section>
+
+<!-- 7. Profile -->
+<section class="slide soft">
+  <div class="kicker">04 · Member Profile</div>
+  <h2>A professional community profile</h2>
+  <div class="row">
+    <div><div class="shot" data-crop="658,12,250,676" data-h="470"></div><div class="cap">Mobile</div></div>
+    <div class="col" style="flex:1">
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Identity</h3><p>Cover photo, profile photo, name, ministry and a personal verse. Counts for posts, followers and following. <b>Edit Profile</b>.</p></div>
+        <div class="card" style="flex:1"><h3>Ministry badges</h3><div class="pills"><span class="pill gold">🏅 Leader</span><span class="pill">🎵 Worship Team</span><span class="pill">🌍 Outreach</span></div></div>
+      </div>
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Interests</h3><div class="pills"><span class="pill">Bible Study</span><span class="pill">New Marrieds</span><span class="pill">Discipleship</span><span class="pill">Music</span><span class="pill">Youth</span></div></div>
+        <div class="card" style="flex:1"><h3>Profile tabs</h3><pre>Posts | Media | Groups | Events</pre></div>
+      </div>
+      <div class="card" style="flex:1"><h3>Desktop layout</h3>
+<pre>┌──────────────────────────────────────────────┐
+│ Cover Image                                  │
+├───────┬───────────────────┬──────────────────┤
+│ Photo │ Name · Ministry   │   Edit Profile   │
+├───────┴───────────────────┴──────────────────┤
+│ Posts  ·  Followers  ·  Following            │
+├──────────────┬───────────────────────────────┤
+│ Badges       │ About                         │
+│ Interests    │ Recent Posts                  │
+│ Groups       │ Media                         │
+└──────────────┴───────────────────────────────┘</pre></div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>7</span></div>
+</section>
+
+<!-- 8. Sermons -->
+<section class="slide soft">
+  <div class="kicker">05 · Sermons &amp; Media / Word Hub</div>
+  <h2>A complete Christian media library</h2>
+  <div class="row">
+    <div><div class="shot" data-crop="928,12,278,676" data-h="470"></div><div class="cap">Mobile</div></div>
+    <div class="col" style="flex:1">
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Navigation</h3><pre>Featured | Series | Topics | Pastors</pre></div>
+        <div class="card" style="flex:1"><h3>Library filters</h3><div class="pills"><span class="pill">Topic</span><span class="pill">Pastor</span><span class="pill">Date</span><span class="pill">Series</span></div></div>
+      </div>
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Featured series</h3><p>A large promotional card, for example <b>The Book of Acts</b> with Pastor Dave and Pastor Tim, and a Play Series button.</p></div>
+        <div class="card" style="flex:1"><h3>Continue listening</h3><pre>▶ Finding Peace · Pastor Dave
+████████░░░░  12:35 / 25:00</pre></div>
+      </div>
+      <div class="card"><h3>Recommended features</h3><div class="pills"><span class="pill">Audio player</span><span class="pill">Video player</span><span class="pill">Download</span><span class="pill">Share</span><span class="pill">Save</span><span class="pill">Personal notes</span><span class="pill">Bible references</span><span class="pill">Transcript</span><span class="pill">Related sermons</span></div></div>
+      <div class="card" style="flex:1"><h3>Desktop: full media dashboard with a fixed player</h3>
+<pre>Featured Series → Continue Listening → Latest → Popular → Series → Topics
+
+▶ Finding Peace · Pastor Dave
+00:12:35 ━━━━━━━━━━━━━━ 00:25:00      ↶ 10s   ▶   10s ↷</pre></div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>8</span></div>
+</section>
+
+<!-- 9. Prayer wall -->
+<section class="slide soft">
+  <div class="kicker">06 · Prayer Wall</div>
+  <h2>A major feature, not just another feed</h2>
+  <div class="row">
+    <div><div class="shot" data-crop="1228,12,292,676" data-h="470"></div><div class="cap">Mobile</div></div>
+    <div class="col" style="flex:1">
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Prayer composer</h3><p>“Share a Prayer Request. We believe in the power of prayer.” A text field (500 characters), a privacy selector and a <b>Post Prayer Request</b> button.</p></div>
+        <div class="card" style="flex:1"><h3>Privacy options</h3><div class="pills"><span class="pill">Public</span><span class="pill">Church Community</span><span class="pill">My Ministry Group</span><span class="pill">Pastor Only</span><span class="pill">Anonymous</span></div></div>
+      </div>
+      <div class="card" style="border:2px solid var(--gold);background:#fffaf0">
+        <h3>The key interaction: 🙏 I PRAYED FOR THIS</h3>
+        <p>Members don't just like a prayer. They record that they actually prayed. The count shows the requester how many people are praying for them.</p>
+      </div>
+      <div style="display:flex;gap:14px">
+        <div class="card" style="flex:1"><h3>Prayer card</h3><pre>Linda Mensah · 2 hours ago
+Pray for my family as we travel
+this weekend. 🙏
+
+🙏 I PRAYED FOR THIS (24)
+❤️ 12        💬 3</pre></div>
+        <div class="card" style="flex:1"><h3>Tabs</h3><pre>Prayer Feed | Answered Prayers</pre><h3 style="margin-top:12px">Answered prayer</h3><pre>🙏 Prayer Answered
+“God answered our prayer...”
+❤️ 24 people prayed · 💬 8</pre></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>9</span></div>
+</section>
+
+<!-- 10. Navigation -->
+<section class="slide">
+  <div class="kicker">07 · Navigation &amp; Interaction Model</div>
+  <h2>One creation button, two navigation patterns</h2>
+  <div class="row">
+    <div class="card" style="flex:1;background:var(--lav);border:none">
+      <h3>Mobile · 5-item bottom navigation</h3>
+      <pre style="font-size:15px">🏠 Home   📖 Word   ⊕   🙏 Prayer   💬 Chat</pre>
+      <p style="margin:14px 0 8px;color:var(--muted)">The center <b>+</b> is the main creation button. It opens a bottom sheet:</p>
+      <pre style="font-size:14px">Create
+  📝 Post
+  🙏 Prayer Request
+  📸 Photo
+  🎥 Video
+  📅 Event
+  💬 Testimony</pre>
+      <p style="margin-top:10px;color:var(--muted)">Creation stays one tap away, so the rest of the interface stays clean.</p>
+    </div>
+    <div class="card" style="flex:1;background:var(--navy);color:#fff;border:none">
+      <h3 style="color:#fff">Desktop · persistent left sidebar</h3>
+      <p style="color:#cfc6ea;margin-bottom:10px">Desktop does not use the mobile bottom navigation.</p>
+      <pre style="color:#e3dcff;font-size:14px">CITY4CHRIST
+
+🏠 Home
+📖 Bible / Word
+🎙 Sermons
+👥 Ministry Groups
+📅 Events
+🙏 Prayer Wall
+💬 Chat
+👤 Members
+🔔 Notifications
+──────────────
+⚙ Settings</pre>
+      <p style="color:#cfc6ea;margin-top:10px">Top bar: <b style="color:#fff">Search anything…</b> · 🔔 · 👤 Member name</p>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>10</span></div>
+</section>
+
+<!-- 11. Design system -->
+<section class="slide">
+  <div class="kicker">08 · Design System</div>
+  <h2>One system for every screen</h2>
+  <div class="row">
+    <div class="col" style="flex:1">
+      <h3>Color</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div><div style="height:74px;border-radius:14px;background:var(--navy)"></div><p style="font-size:12px;margin-top:6px"><b>Deep Navy</b><br><span class="mono" style="font-size:11px">#160D2E</span> · primary</p></div>
+        <div><div style="height:74px;border-radius:14px;background:var(--purple)"></div><p style="font-size:12px;margin-top:6px"><b>Royal Purple</b><br><span class="mono" style="font-size:11px">#6B3FE0</span> · actions</p></div>
+        <div><div style="height:74px;border-radius:14px;background:var(--gold)"></div><p style="font-size:12px;margin-top:6px"><b>Gold</b><br><span class="mono" style="font-size:11px">#F4B73B</span> · highlights</p></div>
+        <div><div style="height:74px;border-radius:14px;background:var(--lav-2)"></div><p style="font-size:12px;margin-top:6px"><b>Soft Lavender</b><br><span class="mono" style="font-size:11px">#E6DEFB</span> · pills</p></div>
+        <div><div style="height:74px;border-radius:14px;background:var(--lav);border:1px solid var(--line)"></div><p style="font-size:12px;margin-top:6px"><b>Light Lavender</b><br><span class="mono" style="font-size:11px">#F3EFFD</span> · desktop bg</p></div>
+        <div><div style="height:74px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--purple-2))"></div><p style="font-size:12px;margin-top:6px"><b>Button gradient</b><br><span class="mono" style="font-size:11px">#6B3FE0 → #8A5CF6</span></p></div>
+      </div>
+      <p style="color:var(--muted);font-size:13px">Use very light lavender or white for desktop content areas, and deep navy or purple for selected dark sections.</p>
+    </div>
+    <div class="col" style="flex:1">
+      <h3>Components</h3>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span style="background:linear-gradient(135deg,var(--purple),var(--purple-2));color:#fff;font-weight:700;font-size:14px;padding:12px 22px;border-radius:14px">RSVP / Remind Me</span>
+        <span style="border:1px solid var(--line);font-weight:600;font-size:14px;padding:12px 22px;border-radius:14px">Details</span>
+        <span class="pill gold">🙏 I PRAYED FOR THIS (24)</span>
+        <span class="pill">Member</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px">
+        <div class="card"><h3>Shape</h3><p>16–24px border radius · soft shadows · rounded avatars</p></div>
+        <div class="card"><h3>Touch</h3><p>Large touch targets (44px minimum) · pill badges</p></div>
+        <div class="card"><h3>Feedback</h3><p>Skeleton loading states · toast notifications</p></div>
+        <div class="card"><h3>Overlays</h3><p>Modal dialogs on desktop · bottom sheets on mobile</p></div>
+      </div>
+      <p style="color:var(--muted);font-size:13px">Use one icon set with a consistent stroke weight everywhere.</p>
+    </div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>11</span></div>
+</section>
+
+<!-- 12. Responsive -->
+<section class="slide soft">
+  <div class="kicker">09 · Responsive Strategy</div>
+  <h2>Mobile vs. tablet vs. desktop</h2>
+  <p class="lead">Mobile and desktop should not be scaled versions of each other. Each breakpoint gets its own composition.</p>
+  <div class="row" style="gap:18px">
+    <div class="card" style="flex:1">
+      <div class="kicker" style="margin:0">Mobile</div><h2 style="font-size:26px">390–430px</h2>
+      <ul class="dots" style="margin-top:10px"><li>Bottom navigation</li><li>Single-column cards</li><li>Swipeable sections</li><li>Bottom sheets</li><li>Center + create button</li></ul>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="kicker" style="margin:0">Tablet</div><h2 style="font-size:26px">768–1024px</h2>
+      <ul class="dots" style="margin-top:10px"><li>Two-column layouts</li><li>Collapsible sidebar</li><li>Group grid with two cards per row</li><li>Media player docked at the bottom</li></ul>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="kicker" style="margin:0">Desktop</div><h2 style="font-size:26px">1280px+</h2>
+      <ul class="dots" style="margin-top:10px"><li>Persistent sidebar</li><li>Two- to three-column dashboard</li><li>Large content areas</li><li>Fixed media player</li><li>Right-hand context panel</li></ul>
+    </div>
+  </div>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:18px">
+    <div class="shot desk" data-crop="0,703,481,318" data-w="270"></div>
+    <div class="shot desk" data-crop="481,703,358,318" data-w="200"></div>
+    <div class="shot desk" data-crop="840,703,335,318" data-w="188"></div>
+    <div class="shot desk" data-crop="1176,703,360,318" data-w="202"></div>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>12</span></div>
+</section>
+
+<!-- 13. App structure -->
+<section class="slide">
+  <div class="kicker">10 · Application Structure</div>
+  <h2>Recommended information architecture</h2>
+  <div class="row" style="gap:16px">
+<pre class="card" style="flex:1;font-size:13px">CITY4CHRIST
+├── Dashboard
+│   ├── Daily Scripture
+│   ├── Devotional
+│   ├── Quick Actions
+│   ├── Events
+│   └── Fellowship Feed
+├── Bible / Word
+│   ├── Bible
+│   ├── Devotionals
+│   ├── Reading Plans
+│   └── Bookmarks
+└── Sermons & Media
+    ├── Featured · Sermons
+    ├── Series · Topics
+    ├── Pastors
+    └── Audio Player</pre>
+<pre class="card" style="flex:1;font-size:13px">├── Ministry Groups
+│   ├── All Groups
+│   ├── My Groups
+│   ├── Group Details
+│   ├── Group Feed
+│   ├── Group Events
+│   └── Members
+├── Prayer Wall
+│   ├── Prayer Feed
+│   ├── Submit Prayer
+│   ├── My Prayers
+│   └── Answered Prayers
+└── Events
+    ├── Upcoming · Calendar
+    └── RSVP · Reminders</pre>
+<pre class="card" style="flex:1;font-size:13px">├── Community
+│   ├── Posts
+│   ├── Testimonies
+│   ├── Members
+│   └── Chat
+└── Profile
+    ├── Profile
+    ├── Badges
+    ├── Interests
+    ├── Posts
+    ├── Groups
+    └── Settings</pre>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>13</span></div>
+</section>
+
+<!-- 14. Build approach -->
+<section class="slide dark">
+  <div class="kicker">11 · Implementation Approach</div>
+  <h2>Build the system first, then the screens</h2>
+  <div class="row" style="gap:18px;flex:none;margin-top:36px">
+    <div class="card" style="flex:1"><div class="kicker" style="margin-bottom:6px">Step 1</div><h3>Design tokens</h3><p style="color:#cfc6ea">Color, type scale, spacing, radius, shadow and motion, defined once and shared by every platform.</p></div>
+    <div class="card" style="flex:1"><div class="kicker" style="margin-bottom:6px">Step 2</div><h3>Component library</h3><p style="color:#cfc6ea">Buttons, pills, cards, avatars, feed items, prayer cards, media player, sheets, modals, toasts and skeletons.</p></div>
+    <div class="card" style="flex:1"><div class="kicker" style="margin-bottom:6px">Step 3</div><h3>Mobile compositions</h3><p style="color:#cfc6ea">Dashboard, Groups, Profile, Sermons and Prayer Wall with bottom navigation and the Create sheet.</p></div>
+    <div class="card" style="flex:1"><div class="kicker" style="margin-bottom:6px">Step 4</div><h3>Desktop compositions</h3><p style="color:#cfc6ea">Sidebar shell, multi-column dashboards, a fixed media player and context panels, as separate layouts.</p></div>
+  </div>
+  <div class="card" style="margin-top:22px;border-color:var(--gold)">
+    <h3 style="color:var(--gold)">The key redesign</h3>
+    <p style="font-size:17px;color:#fff">Turn separate feature mockups into one church community platform. It should be as easy to use as a modern social app, and centered on the Bible, fellowship, prayer, ministry groups, sermons, events and member relationships.</p>
+  </div>
+  <div class="footer"><span>City4Christ UI/UX Redesign</span><span>14</span></div>
+</section>
+
+<script>
+  // Crop regions of the 1536x1024 mockup sheet into sized screenshot frames.
+  const SHEET_W = 1536, SHEET_H = 1024;
+  document.querySelectorAll('.shot').forEach(el => {
+    const [x, y, w, h] = el.dataset.crop.split(',').map(Number);
+    const s = el.dataset.w ? el.dataset.w / w : el.dataset.h / h;
+    el.style.width = (w * s) + 'px';
+    el.style.height = (h * s) + 'px';
+    el.style.backgroundSize = (SHEET_W * s) + 'px ' + (SHEET_H * s) + 'px';
+    el.style.backgroundPosition = (-x * s) + 'px ' + (-y * s) + 'px';
+  });
+</script>
+</body>
+</html>
